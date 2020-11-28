@@ -1,0 +1,74 @@
+{% load cms_tags menu_tags sekizai_tags static %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="{% page_attribute 'meta_description' %}">
+  <meta name="author" content="">
+
+  <title>{% page_attribute 'page_title' %} - New Site</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/modern-business.css' %}" rel="stylesheet">
+
+  <!-- django CMS toolbar adjustment -->
+  {% if request.toolbar %}
+  <style>
+    .cms-toolbar-expanded .navbar.fixed-top {
+      margin-top: 45px;
+    }
+  </style>
+  {% endif %}
+
+  {% render_block "css" %}
+
+</head>
+
+<body>
+  {% cms_toolbar %}
+  <!-- Navigation -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">New Site</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          {% show_menu 0 100 100 100 "menu_style/menu.html" %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {% block content %} {% endblock %}
+
+  <!-- Footer -->
+  <!-- <footer class="py-5 bg-dark"> -->
+  <footer>
+    {% static_placeholder "Footer" %}
+    <!--Static placeholders are similar to placeholders only difference is the content of the static placeholder remains throughout all of the pages using it-->
+    <!-- <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div> -->
+    <!-- /.container -->
+  </footer>
+
+
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  {% render_block "js" %}
+
+</body>
+
+</html>
